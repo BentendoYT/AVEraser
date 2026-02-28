@@ -19,8 +19,7 @@ AVEraser is a powerful antivirus residue cleaner for Windows built with .NET Fra
 ## Installation
 
 1. Download the latest release from the [Releases](../../releases) page.
-2. Extract the archive to your desired location.
-3. Run `AVEraser.exe` **as Administrator** (required for service and registry deletion).
+2. Run the installer (`AVEraserSetup.exe`) and follow the instructions.
 
 ## Usage
 

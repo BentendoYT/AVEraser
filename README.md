@@ -1,4 +1,5 @@
-# <img width="1514" height="278" alt="AVEraser" src="https://github.com/user-attachments/assets/01b67eae-038b-427d-9e7f-89e72fe5c9d3" />
+# <img width="1440" height="256" alt="AVEraser" src="https://github.com/user-attachments/assets/9d892139-87bc-474d-bc9d-4d5c9241bd80" />
+
 
 AVEraser is a powerful antivirus residue cleaner for Windows built with .NET Framework. It detects and removes leftover files, registry keys, services, and processes from 21 known antivirus products — even after their official uninstallers have run — ensuring a completely clean system ready for a fresh install.
 

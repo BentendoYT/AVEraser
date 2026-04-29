@@ -1,0 +1,61 @@
+{
+  "db_version": "2026-04-29",
+  "total_entries": 4,
+  "description": "AVEraser Community Signature Database. All entries are manually reviewed before merging. Do NOT submit system-critical processes (svchost, explorer, csrss, etc.).",
+  "maintainer": "BentendoYT",
+  "schema_version": 1,
+  "entries": [
+    {
+      "name": "Huorong Security",
+      "contributor": "community",
+      "added": "2026-04-29",
+      "reviewed": true,
+      "processes": ["HipsDaemon", "HipsMain", "HipsTray"],
+      "services": ["HipsDaemon", "HipsLog", "HipsWsc"],
+      "registry_keys": ["SOFTWARE\\Huorong", "SOFTWARE\\WOW6432Node\\Huorong"],
+      "folders": ["C:\\Program Files\\Huorong", "C:\\ProgramData\\Huorong"]
+    },
+    {
+      "name": "360 Total Security",
+      "contributor": "community",
+      "added": "2026-04-29",
+      "reviewed": true,
+      "processes": ["360sd", "360tray", "ZhuDongFangYu"],
+      "services": ["360rp", "360SafeBoxService", "360AntiHacker"],
+      "registry_keys": ["SOFTWARE\\360Safe", "SOFTWARE\\WOW6432Node\\360Safe"],
+      "folders": [
+        "C:\\Program Files\\360\\Total Security",
+        "C:\\ProgramData\\360Safe"
+      ]
+    },
+    {
+      "name": "Dr.Web",
+      "contributor": "community",
+      "added": "2026-04-29",
+      "reviewed": true,
+      "processes": ["dwservice", "spideragent", "dwarkdaemon"],
+      "services": ["DrWeb", "DrWebFileCheck", "dwnetfilter"],
+      "registry_keys": [
+        "SOFTWARE\\Doctor Web",
+        "SOFTWARE\\WOW6432Node\\Doctor Web"
+      ],
+      "folders": ["C:\\Program Files\\DrWeb", "C:\\ProgramData\\Doctor Web"]
+    },
+    {
+      "name": "K7 Antivirus",
+      "contributor": "community",
+      "added": "2026-04-29",
+      "reviewed": true,
+      "processes": ["K7TSecurity", "K7EmlPxy", "K7TSMain"],
+      "services": ["K7TSService", "K7RTScan"],
+      "registry_keys": [
+        "SOFTWARE\\K7 Computing",
+        "SOFTWARE\\WOW6432Node\\K7 Computing"
+      ],
+      "folders": [
+        "C:\\Program Files\\K7 Computing",
+        "C:\\ProgramData\\K7 Computing"
+      ]
+    }
+  ]
+}

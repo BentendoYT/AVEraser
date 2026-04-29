@@ -1,0 +1,159 @@
+name: Validate Signature Submission
+
+on:
+  issues:
+    types: [opened, edited]
+  pull_request:
+    paths:
+      - 'signatures.json'
+
+jobs:
+  # ── Job 1: Validate new Issues tagged as signature submissions ────────────
+  validate-issue:
+    if: |
+      github.event_name == 'issues' &&
+      contains(github.event.issue.labels.*.name, 'signature-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for dangerous system processes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+
+            const BLOCKED = [
+              'svchost', 'explorer', 'csrss', 'lsass', 'winlogon',
+              'services', 'smss', 'wininit', 'taskmgr', 'rundll32',
+              'conhost', 'dllhost', 'msiexec', 'spoolsv', 'searchindexer',
+              'wmiprvse', 'audiodg', 'dwm', 'fontdrvhost', 'sihost',
+              'ctfmon', 'userinit', 'ntoskrnl', 'system'
+            ];
+
+            const found = BLOCKED.filter(p =>
+              new RegExp('\\b' + p + '(\\.exe)?\\b', 'i').test(body)
+            );
+
+            if (found.length > 0) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `## Submission Rejected
+
+The submitted data contains one or more system-critical Windows components that cannot be accepted as valid antivirus signatures.
+
+### Detected restricted components:
+` + found.map(p => `- \`${p}\``).join('\n') + `
+
+These components are part of the Windows operating system and are not exclusive to any specific antivirus product.
+
+### Required action
+Please remove all system-critical or shared components and update your submission accordingly.
+
+If you believe this detection is incorrect, provide a detailed explanation demonstrating that the listed component is exclusively associated with the specified product.`
+              });
+
+              await github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['rejected-dangerous-process']
+              });
+
+              core.setFailed(`Blocked system processes detected: ${found.join(', ')}`);
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `## Automated Validation Passed
+
+No restricted or system-critical components were detected in the submitted data.
+
+This submission will now proceed to manual review.
+
+### Next steps
+1. A maintainer will verify the submitted data in a controlled environment
+2. Approved signatures will be added to \`signatures.json\` via a pull request
+3. Changes become effective after the pull request is merged
+
+Please note that successful automated validation does not guarantee acceptance. All submissions are subject to manual verification.`
+              });
+            }
+
+  # ── Job 2: Validate signatures.json on PRs ───────────────────────────────
+  validate-json:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate signatures.json structure and content
+        run: |
+          python3 - <<'EOF'
+          import json, sys, re
+
+          BLOCKED_PROCESSES = {
+              'svchost', 'explorer', 'csrss', 'lsass', 'winlogon',
+              'services', 'smss', 'wininit', 'taskmgr', 'rundll32',
+              'conhost', 'dllhost', 'msiexec', 'spoolsv', 'searchindexer',
+              'wmiprvse', 'audiodg', 'dwm', 'fontdrvhost', 'sihost',
+              'ctfmon', 'userinit', 'ntoskrnl', 'system'
+          }
+
+          REQUIRED_FIELDS = {'name', 'contributor', 'added', 'reviewed',
+                             'processes', 'services', 'registry_keys', 'folders'}
+
+          errors = []
+
+          try:
+              with open('signatures.json', 'r', encoding='utf-8') as f:
+                  data = json.load(f)
+          except json.JSONDecodeError as e:
+              print(f"Invalid JSON format: {e}")
+              sys.exit(1)
+
+          entries = data.get('entries', [])
+          print(f"Validating {len(entries)} entries...")
+
+          for i, entry in enumerate(entries):
+              name = entry.get('name', f'Entry #{i}')
+
+              # Check required fields
+              missing = REQUIRED_FIELDS - set(entry.keys())
+              if missing:
+                  errors.append(f"[{name}] Missing required fields: {missing}")
+
+              # Must be reviewed
+              if not entry.get('reviewed', False):
+                  errors.append(f"[{name}] 'reviewed' must be set to true before merging")
+
+              # Check for blocked processes
+              for proc in entry.get('processes', []):
+                  clean = re.sub(r'\.exe$', '', proc, flags=re.IGNORECASE).lower()
+                  if clean in BLOCKED_PROCESSES:
+                      errors.append(f"[{name}] Restricted system process detected: '{proc}'")
+
+              # Must have at least one signature
+              has_sigs = any([
+                  entry.get('processes'),
+                  entry.get('services'),
+                  entry.get('registry_keys'),
+                  entry.get('folders')
+              ])
+              if not has_sigs:
+                  errors.append(f"[{name}] At least one signature (process, service, registry key, or folder) is required")
+
+              # Sanity: no obviously wrong folder paths
+              for folder in entry.get('folders', []):
+                  if folder.lower() in ['c:\\windows', 'c:\\windows\\system32', 'c:\\']:
+                      errors.append(f"[{name}] Restricted system directory detected: '{folder}'")
+
+          if errors:
+              print("\nValidation failed:\n")
+              for e in errors:
+                  print(f" - {e}")
+              sys.exit(1)
+          else:
+              print(f"\nValidation successful: {len(entries)} entries passed all checks.")
+          EOF

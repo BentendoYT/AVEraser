@@ -1,4 +1,4 @@
-# Contributing to AVEraser
+# <img width="1440" height="256" alt="Contributing" src="https://github.com/user-attachments/assets/0a6d168b-dd21-4dba-bf37-c8f4cf172950" />
 
 Thank you for your interest in contributing to AVEraser.
 

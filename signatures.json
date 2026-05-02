@@ -1,61 +1,330 @@
 {
-  "db_version": "2026-04-29",
-  "total_entries": 4,
+  "db_version": "2026-05-02",
+  "total_entries": 24,
   "description": "AVEraser Community Signature Database. All entries are manually reviewed before merging. Do NOT submit system-critical processes (svchost, explorer, csrss, etc.).",
   "maintainer": "BentendoYT",
   "schema_version": 1,
   "entries": [
     {
+      "name": "Avast Antivirus",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["avast", "AvastUI", "AvastSvc", "aswidsagent", "aswToolsSvc"],
+      "services": ["avast! Antivirus", "aswbIDSAgent", "aswMonFlt", "aswRvrt", "aswSnx", "aswSP", "aswVmm"],
+      "registry_keys": ["SOFTWARE\\AVAST Software", "SOFTWARE\\WOW6432Node\\AVAST Software"],
+      "folders": ["C:\\Program Files\\AVAST Software", "C:\\ProgramData\\AVAST Software"],
+      "bundled": [
+        {
+          "name": "Avast Secure Browser",
+          "processes": ["AvastBrowser"],
+          "services": ["AvastBrowserCrashHandler", "aswAMSI"],
+          "registry_keys": ["SOFTWARE\\AVAST Software\\Browser", "SOFTWARE\\WOW6432Node\\AVAST Software\\Browser"],
+          "folders": ["C:\\Program Files\\AVAST Software\\Browser"]
+        }
+      ]
+    },
+    {
+      "name": "AVG Antivirus",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["avg", "AVGUI", "AVGSvc"],
+      "services": ["AVG Antivirus", "avgwd", "AVGIDSAgent"],
+      "registry_keys": ["SOFTWARE\\AVG", "SOFTWARE\\WOW6432Node\\AVG"],
+      "folders": ["C:\\Program Files\\AVG", "C:\\ProgramData\\AVG"],
+      "bundled": [
+        {
+          "name": "AVG Secure Browser",
+          "processes": ["AVGBrowser"],
+          "services": ["AVGBrowserCrashHandler"],
+          "registry_keys": ["SOFTWARE\\AVG\\Browser", "SOFTWARE\\WOW6432Node\\AVG\\Browser"],
+          "folders": ["C:\\Program Files\\AVG\\Browser"]
+        }
+      ]
+    },
+    {
+      "name": "Avira",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["avira", "avgnt", "avshadow", "avguard"],
+      "services": ["AntiVirService", "AntiVirSchedulerService", "Avira.ServiceHost", "avipbb", "avgntflt"],
+      "registry_keys": ["SOFTWARE\\Avira", "SOFTWARE\\WOW6432Node\\Avira"],
+      "folders": ["C:\\Program Files\\Avira", "C:\\ProgramData\\Avira"],
+      "bundled": []
+    },
+    {
+      "name": "Bitdefender",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["bdagent", "bdwtxag", "seccenter", "vsserv"],
+      "services": ["VSSERV", "bdredline", "bdaflt", "bdfwfpf"],
+      "registry_keys": ["SOFTWARE\\Bitdefender", "SOFTWARE\\WOW6432Node\\Bitdefender"],
+      "folders": ["C:\\Program Files\\Bitdefender", "C:\\ProgramData\\Bitdefender"],
+      "bundled": []
+    },
+    {
+      "name": "Kaspersky",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["avp", "avpui", "klbackupdisk"],
+      "services": ["KLIF", "klflt", "klpd", "AVP", "klhk"],
+      "registry_keys": ["SOFTWARE\\KasperskyLab", "SOFTWARE\\WOW6432Node\\KasperskyLab"],
+      "folders": ["C:\\Program Files\\Kaspersky Lab", "C:\\ProgramData\\Kaspersky Lab"],
+      "bundled": []
+    },
+    {
+      "name": "Malwarebytes",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["MBAMService", "mbam", "mbamtray"],
+      "services": ["MBAMService", "MBAMFarflt", "MBAMChameleon", "mbamswissarmy"],
+      "registry_keys": ["SOFTWARE\\Malwarebytes", "SOFTWARE\\WOW6432Node\\Malwarebytes"],
+      "folders": ["C:\\Program Files\\Malwarebytes", "C:\\ProgramData\\Malwarebytes"],
+      "bundled": []
+    },
+    {
+      "name": "McAfee / Trellix",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["mcshield", "mcuicnt", "mfevtps"],
+      "services": ["mcshield", "mfevtp", "McAfeeFramework", "mfehidk", "mfewfpk"],
+      "registry_keys": ["SOFTWARE\\McAfee", "SOFTWARE\\WOW6432Node\\McAfee", "SOFTWARE\\Trellix"],
+      "folders": ["C:\\Program Files\\McAfee", "C:\\ProgramData\\McAfee", "C:\\Program Files\\Trellix"],
+      "bundled": [
+        {
+          "name": "McAfee WebAdvisor",
+          "processes": ["McUICnt", "WebAdvisor"],
+          "services": ["McAfee WebAdvisor", "wlidsvc"],
+          "registry_keys": ["SOFTWARE\\McAfee\\WebAdvisor", "SOFTWARE\\WOW6432Node\\McAfee\\WebAdvisor"],
+          "folders": ["C:\\Program Files\\McAfee\\WebAdvisor", "C:\\Program Files (x86)\\McAfee\\WebAdvisor"]
+        },
+        {
+          "name": "McAfee Safe Connect (VPN)",
+          "processes": ["McAfeeVPN"],
+          "services": ["McAfeeVPNService"],
+          "registry_keys": ["SOFTWARE\\McAfee\\VPN"],
+          "folders": ["C:\\Program Files\\McAfee VPN"]
+        }
+      ]
+    },
+    {
+      "name": "Norton / Symantec",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["norton", "nlnhook", "ccsvchst"],
+      "services": ["ccSetMgr", "Symantec AntiVirus", "NortonSecurity", "SymEFA"],
+      "registry_keys": ["SOFTWARE\\Norton", "SOFTWARE\\WOW6432Node\\Norton", "SOFTWARE\\Symantec"],
+      "folders": ["C:\\Program Files\\Norton", "C:\\Program Files\\Symantec", "C:\\ProgramData\\Norton"],
+      "bundled": [
+        {
+          "name": "Norton Safe Web",
+          "processes": ["NortonBrowser"],
+          "services": ["NortonSafeWeb"],
+          "registry_keys": ["SOFTWARE\\Norton\\Browser", "SOFTWARE\\WOW6432Node\\Norton\\SafeWeb"],
+          "folders": ["C:\\Program Files\\Norton\\Browser"]
+        },
+        {
+          "name": "Norton Password Manager",
+          "processes": ["NortonPasswordManager"],
+          "services": ["NortonPwdMgr"],
+          "registry_keys": ["SOFTWARE\\Norton\\PasswordManager"],
+          "folders": ["C:\\ProgramData\\Norton\\PasswordManager"]
+        }
+      ]
+    },
+    {
+      "name": "ESET NOD32",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["egui", "ekrn"],
+      "services": ["ekrn", "EHttpSrv", "epfw"],
+      "registry_keys": ["SOFTWARE\\ESET", "SOFTWARE\\WOW6432Node\\ESET"],
+      "folders": ["C:\\Program Files\\ESET", "C:\\ProgramData\\ESET"],
+      "bundled": []
+    },
+    {
+      "name": "Trend Micro",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["pccntmon", "tmbmsrv", "uiWatchDog"],
+      "services": ["tmactmon", "tmcomm", "tmevtmgr", "tmntsrv"],
+      "registry_keys": ["SOFTWARE\\TrendMicro", "SOFTWARE\\WOW6432Node\\TrendMicro"],
+      "folders": ["C:\\Program Files\\Trend Micro", "C:\\ProgramData\\Trend Micro"],
+      "bundled": []
+    },
+    {
+      "name": "Sophos",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["SophosSafestore", "SophosHealth", "SophosUI"],
+      "services": ["Sophos AutoUpdate Service", "SAVService", "SophosAgent", "SophosBootDriver"],
+      "registry_keys": ["SOFTWARE\\Sophos", "SOFTWARE\\WOW6432Node\\Sophos"],
+      "folders": ["C:\\Program Files\\Sophos", "C:\\ProgramData\\Sophos"],
+      "bundled": []
+    },
+    {
+      "name": "F-Secure",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["fshoster", "fssm32", "fsav32"],
+      "services": ["FSMA", "fshoster", "F-Secure Filter"],
+      "registry_keys": ["SOFTWARE\\F-Secure", "SOFTWARE\\WOW6432Node\\F-Secure"],
+      "folders": ["C:\\Program Files\\F-Secure", "C:\\ProgramData\\F-Secure"],
+      "bundled": []
+    },
+    {
+      "name": "G Data",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["GDScan", "AVKWCtl", "AVKProxy"],
+      "services": ["AVKProxy", "AVKWCtl", "GDScan"],
+      "registry_keys": ["SOFTWARE\\G Data", "SOFTWARE\\WOW6432Node\\G Data"],
+      "folders": ["C:\\Program Files\\G Data", "C:\\ProgramData\\G Data"],
+      "bundled": []
+    },
+    {
+      "name": "Comodo",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["cfp", "cavwp", "cmdagent"],
+      "services": ["cmdAgent", "CmdGuard", "cmderd"],
+      "registry_keys": ["SOFTWARE\\COMODO", "SOFTWARE\\WOW6432Node\\COMODO"],
+      "folders": ["C:\\Program Files\\COMODO", "C:\\ProgramData\\COMODO"],
+      "bundled": []
+    },
+    {
+      "name": "Panda Security",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["PavFnSvr", "PAVSRV", "PSUAMain"],
+      "services": ["PavFnSvr", "PandaAgent"],
+      "registry_keys": ["SOFTWARE\\Panda Security", "SOFTWARE\\WOW6432Node\\Panda Security"],
+      "folders": ["C:\\Program Files\\Panda Security", "C:\\ProgramData\\Panda Security"],
+      "bundled": []
+    },
+    {
+      "name": "Webroot",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["WRSA", "WRConsumerService"],
+      "services": ["WRSVC", "WRConsumerService", "WRkrn"],
+      "registry_keys": ["SOFTWARE\\WRData", "SOFTWARE\\WOW6432Node\\WRData"],
+      "folders": ["C:\\Program Files\\Webroot", "C:\\ProgramData\\WRData"],
+      "bundled": []
+    },
+    {
+      "name": "Vipre",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["SBAMSvc", "SBPIMSvc"],
+      "services": ["SBAMSvc", "SBPIMSvc", "SBREDrv"],
+      "registry_keys": ["SOFTWARE\\VIPRE", "SOFTWARE\\WOW6432Node\\VIPRE"],
+      "folders": ["C:\\Program Files\\VIPRE", "C:\\ProgramData\\VIPRE"],
+      "bundled": []
+    },
+    {
+      "name": "TotalAV",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["TotalAV", "totalav"],
+      "services": ["TotalAV", "TotalAVService"],
+      "registry_keys": ["SOFTWARE\\TotalAV", "SOFTWARE\\WOW6432Node\\TotalAV"],
+      "folders": ["C:\\Program Files\\TotalAV", "C:\\ProgramData\\TotalAV"],
+      "bundled": []
+    },
+    {
+      "name": "Cylance",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["CylanceSvc", "CylanceUI"],
+      "services": ["CylanceSvc", "CylanceProtectDriver"],
+      "registry_keys": ["SOFTWARE\\Cylance", "SOFTWARE\\WOW6432Node\\Cylance"],
+      "folders": ["C:\\Program Files\\Cylance", "C:\\ProgramData\\Cylance"],
+      "bundled": []
+    },
+    {
+      "name": "CrowdStrike Falcon",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["CSFalconService", "falconctl"],
+      "services": ["CSFalconService", "csagent"],
+      "registry_keys": ["SOFTWARE\\CrowdStrike", "SOFTWARE\\WOW6432Node\\CrowdStrike"],
+      "folders": ["C:\\Program Files\\CrowdStrike", "C:\\ProgramData\\CrowdStrike"],
+      "bundled": []
+    },
+    {
+      "name": "SentinelOne",
+      "contributor": "AVEraser",
+      "added": "2026-05-02",
+      "reviewed": true,
+      "processes": ["SentinelAgent", "SentinelUI"],
+      "services": ["SentinelAgent", "SentinelStaticEngine"],
+      "registry_keys": ["SOFTWARE\\SentinelOne", "SOFTWARE\\WOW6432Node\\SentinelOne"],
+      "folders": ["C:\\Program Files\\SentinelOne", "C:\\ProgramData\\Sentinel"],
+      "bundled": []
+    },
+    {
       "name": "Huorong Security",
-      "contributor": "community",
+      "contributor": "AVEraser",
       "added": "2026-04-29",
       "reviewed": true,
       "processes": ["HipsDaemon", "HipsMain", "HipsTray"],
       "services": ["HipsDaemon", "HipsLog", "HipsWsc"],
       "registry_keys": ["SOFTWARE\\Huorong", "SOFTWARE\\WOW6432Node\\Huorong"],
-      "folders": ["C:\\Program Files\\Huorong", "C:\\ProgramData\\Huorong"]
+      "folders": ["C:\\Program Files\\Huorong", "C:\\ProgramData\\Huorong"],
+      "bundled": []
     },
     {
       "name": "360 Total Security",
-      "contributor": "community",
+      "contributor": "AVEraser",
       "added": "2026-04-29",
       "reviewed": true,
       "processes": ["360sd", "360tray", "ZhuDongFangYu"],
       "services": ["360rp", "360SafeBoxService", "360AntiHacker"],
       "registry_keys": ["SOFTWARE\\360Safe", "SOFTWARE\\WOW6432Node\\360Safe"],
-      "folders": [
-        "C:\\Program Files\\360\\Total Security",
-        "C:\\ProgramData\\360Safe"
-      ]
+      "folders": ["C:\\Program Files\\360\\Total Security", "C:\\ProgramData\\360Safe"],
+      "bundled": []
     },
     {
       "name": "Dr.Web",
-      "contributor": "community",
+      "contributor": "AVEraser",
       "added": "2026-04-29",
       "reviewed": true,
       "processes": ["dwservice", "spideragent", "dwarkdaemon"],
       "services": ["DrWeb", "DrWebFileCheck", "dwnetfilter"],
-      "registry_keys": [
-        "SOFTWARE\\Doctor Web",
-        "SOFTWARE\\WOW6432Node\\Doctor Web"
-      ],
-      "folders": ["C:\\Program Files\\DrWeb", "C:\\ProgramData\\Doctor Web"]
+      "registry_keys": ["SOFTWARE\\Doctor Web", "SOFTWARE\\WOW6432Node\\Doctor Web"],
+      "folders": ["C:\\Program Files\\DrWeb", "C:\\ProgramData\\Doctor Web"],
+      "bundled": []
     },
     {
       "name": "K7 Antivirus",
-      "contributor": "community",
+      "contributor": "AVEraser",
       "added": "2026-04-29",
       "reviewed": true,
       "processes": ["K7TSecurity", "K7EmlPxy", "K7TSMain"],
       "services": ["K7TSService", "K7RTScan"],
-      "registry_keys": [
-        "SOFTWARE\\K7 Computing",
-        "SOFTWARE\\WOW6432Node\\K7 Computing"
-      ],
-      "folders": [
-        "C:\\Program Files\\K7 Computing",
-        "C:\\ProgramData\\K7 Computing"
-      ]
+      "registry_keys": ["SOFTWARE\\K7 Computing", "SOFTWARE\\WOW6432Node\\K7 Computing"],
+      "folders": ["C:\\Program Files\\K7 Computing", "C:\\ProgramData\\K7 Computing"],
+      "bundled": []
     }
   ]
 }

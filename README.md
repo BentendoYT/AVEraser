@@ -113,7 +113,7 @@ While all signatures are reviewed, use of this software is at your own risk. It 
 
 ## License
 
-This project is licensed under the MIT License.  
+This project is licensed under the Apache 2.0 License.  
 See the [LICENSE](LICENSE) file for more information.
 
 ---

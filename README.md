@@ -25,7 +25,7 @@ Even after official uninstallers have been executed, many antivirus products lea
 - Ability to disable self-protection mechanisms before cleanup
 - Detailed cleanup reporting with clear status indicators
 - Streamlined user interface designed for clarity and efficiency
-- Integrated update system with version tracking
+- Integrated update system
 
 ---
 
@@ -66,7 +66,7 @@ The list is continuously expanded through verified community contributions.
 ## Installation
 
 1. Download the latest version from the [Releases](../../releases) page  
-2. Run the installer (`AVEraserSetup_x64.exe`)  
+2. Run the installer (`AVESetup_x64.exe`)  
 3. Follow the on-screen instructions  
 
 ---
@@ -120,4 +120,4 @@ See the [LICENSE](LICENSE) file for more information.
 
 ## Maintainer
 
-Bentendo © 2026
+© 2026 Bentendo

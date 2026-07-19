@@ -1,0 +1,30 @@
+C:\Users\carst\source\repos\AVEraser\AVEraser\bin\Release\AVEraser.exe.config
+C:\Users\carst\source\repos\AVEraser\AVEraser\bin\Release\AVEraser.exe
+C:\Users\carst\source\repos\AVEraser\AVEraser\bin\Release\AVEraser.pdb
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.csproj.AssemblyReference.cache
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.Properties.Resources.resources
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.csproj.GenerateResource.cache
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.csproj.CoreCompileInputs.cache
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.exe
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.pdb
+C:\Users\carst\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.Form1.resources
+C:\Users\Ben\source\repos\AVEraser\AVEraser\bin\Release\AVEraser.exe.config
+C:\Users\Ben\source\repos\AVEraser\AVEraser\bin\Release\AVEraser.exe
+C:\Users\Ben\source\repos\AVEraser\AVEraser\bin\Release\AVEraser.pdb
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.csproj.AssemblyReference.cache
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.Form1.resources
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.Properties.Resources.resources
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.csproj.GenerateResource.cache
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.csproj.CoreCompileInputs.cache
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.exe
+C:\Users\Ben\source\repos\AVEraser\AVEraser\obj\Release\AVEraser.pdb
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\bin\Release\AVEraser.exe.config
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\bin\Release\AVEraser.exe
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\bin\Release\AVEraser.pdb
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.csproj.AssemblyReference.cache
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.Form1.resources
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.Properties.Resources.resources
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.csproj.GenerateResource.cache
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.csproj.CoreCompileInputs.cache
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.exe
+C:\Users\Ben\source\repos\C#\.NET Framework 4.8\AVEraser\AVEraser\obj\Release\AVEraser.pdb

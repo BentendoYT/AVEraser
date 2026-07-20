@@ -67,6 +67,26 @@ jobs:
                 labels: ['rejected-dangerous-process']
               });
 
+              // Remove 'needs-review' if it was present (e.g. re-triggered on edit)
+              try {
+                await github.rest.issues.removeLabel({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: 'needs-review'
+                });
+              } catch (err) {
+                // Label wasn't present - nothing to do
+                core.info("No 'needs-review' label to remove.");
+              }
+
+              await github.rest.issues.update({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'closed'
+              });
+
               core.setFailed(`Blocked system processes detected: ${found.join(', ')}`);
             } else {
               const lines = [
@@ -89,6 +109,13 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: lines.join('\n')
+              });
+
+              await github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['needs-review']
               });
             }
 
@@ -129,22 +156,18 @@ jobs:
           for i, entry in enumerate(entries):
               name = entry.get('name', f'Entry #{i}')
 
-              # Check required fields
               missing = REQUIRED_FIELDS - set(entry.keys())
               if missing:
                   errors.append(f"[{name}] Missing required fields: {missing}")
 
-              # Must be reviewed
               if not entry.get('reviewed', False):
                   errors.append(f"[{name}] 'reviewed' must be set to true before merging")
 
-              # Check for blocked processes
               for proc in entry.get('processes', []):
                   clean = re.sub(r'\.exe$', '', proc, flags=re.IGNORECASE).lower()
                   if clean in BLOCKED_PROCESSES:
                       errors.append(f"[{name}] Restricted system process detected: '{proc}'")
 
-              # Must have at least one signature
               has_sigs = any([
                   entry.get('processes'),
                   entry.get('services'),
@@ -154,7 +177,6 @@ jobs:
               if not has_sigs:
                   errors.append(f"[{name}] At least one signature (process, service, registry key, or folder) is required")
 
-              # Sanity: no obviously wrong folder paths
               for folder in entry.get('folders', []):
                   if folder.lower() in ['c:\\windows', 'c:\\windows\\system32', 'c:\\']:
                       errors.append(f"[{name}] Restricted system directory detected: '{folder}'")

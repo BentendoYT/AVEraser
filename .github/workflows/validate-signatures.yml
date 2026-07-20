@@ -7,8 +7,11 @@ on:
     paths:
       - 'signatures.json'
 
+permissions:
+  issues: write
+  contents: read
+
 jobs:
-  # ── Job 1: Validate new Issues tagged as signature submissions ────────────
   validate-issue:
     if: |
       github.event_name == 'issues' &&
@@ -34,23 +37,27 @@ jobs:
             );
 
             if (found.length > 0) {
+              const lines = [
+                '## Submission Rejected',
+                '',
+                'The submitted data contains one or more system-critical Windows components that cannot be accepted as valid antivirus signatures.',
+                '',
+                '### Detected restricted components:',
+                found.map(p => '- `' + p + '`').join('\n'),
+                '',
+                'These components are part of the Windows operating system and are not exclusive to any specific antivirus product.',
+                '',
+                '### Required action',
+                'Please remove all system-critical or shared components and update your submission accordingly.',
+                '',
+                'If you believe this detection is incorrect, provide a detailed explanation demonstrating that the listed component is exclusively associated with the specified product.'
+              ];
+
               await github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `## Submission Rejected
-
-The submitted data contains one or more system-critical Windows components that cannot be accepted as valid antivirus signatures.
-
-### Detected restricted components:
-` + found.map(p => `- \`${p}\``).join('\n') + `
-
-These components are part of the Windows operating system and are not exclusive to any specific antivirus product.
-
-### Required action
-Please remove all system-critical or shared components and update your submission accordingly.
-
-If you believe this detection is incorrect, provide a detailed explanation demonstrating that the listed component is exclusively associated with the specified product.`
+                body: lines.join('\n')
               });
 
               await github.rest.issues.addLabels({
@@ -62,26 +69,29 @@ If you believe this detection is incorrect, provide a detailed explanation demon
 
               core.setFailed(`Blocked system processes detected: ${found.join(', ')}`);
             } else {
+              const lines = [
+                '## Automated Validation Passed',
+                '',
+                'No restricted or system-critical components were detected in the submitted data.',
+                '',
+                'This submission will now proceed to manual review.',
+                '',
+                '### Next steps',
+                '1. A maintainer will verify the submitted data in a controlled environment',
+                '2. Approved signatures will be added to `signatures.json` via a pull request',
+                '3. Changes become effective after the pull request is merged',
+                '',
+                'Please note that successful automated validation does not guarantee acceptance. All submissions are subject to manual verification.'
+              ];
+
               await github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `## Automated Validation Passed
-
-No restricted or system-critical components were detected in the submitted data.
-
-This submission will now proceed to manual review.
-
-### Next steps
-1. A maintainer will verify the submitted data in a controlled environment
-2. Approved signatures will be added to \`signatures.json\` via a pull request
-3. Changes become effective after the pull request is merged
-
-Please note that successful automated validation does not guarantee acceptance. All submissions are subject to manual verification.`
+                body: lines.join('\n')
               });
             }
 
-  # ── Job 2: Validate signatures.json on PRs ───────────────────────────────
   validate-json:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest

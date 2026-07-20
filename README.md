@@ -66,7 +66,7 @@ The list is continuously expanded through verified community contributions.
 ## Installation
 
 1. Download the latest version from the [Releases](../../releases) page  
-2. Run the installer (`AVESetup_x64.exe`)  
+2. Run the installer (`AVESetup_XX.exe`)  
 3. Follow the on-screen instructions  
 
 ---

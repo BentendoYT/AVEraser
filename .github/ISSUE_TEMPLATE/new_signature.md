@@ -2,7 +2,7 @@
 name: "AV Signature Submission"
 about: "Submit new antivirus product signatures for inclusion in the database"
 title: "AV Signature Submission: [Product Name]"
-labels: ["signature-submission", "needs-review"]
+labels: ["signature-submission"]
 assignees: ["BentendoYT"]
 ---
 
